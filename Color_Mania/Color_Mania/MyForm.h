@@ -1,5 +1,6 @@
 #pragma once
 #include "Pilas.h"
+#include "Juego.h"
 
 namespace ColorMania {
 
@@ -16,13 +17,16 @@ namespace ColorMania {
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
+	
 	public:
 		MyForm(void)
 		{
+			
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			
 		}
 
 	protected:
@@ -46,6 +50,8 @@ namespace ColorMania {
 	private: System::Windows::Forms::OpenFileDialog^ OFDAbrirArchivo;
 	private: System::Windows::Forms::Button^ BSalir;
 	private: System::Windows::Forms::Button^ BIniciarJuego;
+	private: System::Windows::Forms::DataGridView^ dataGridView1;
+
 
 
 
@@ -68,6 +74,8 @@ namespace ColorMania {
 			this->OFDAbrirArchivo = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->BSalir = (gcnew System::Windows::Forms::Button());
 			this->BIniciarJuego = (gcnew System::Windows::Forms::Button());
+			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -77,8 +85,7 @@ namespace ColorMania {
 			this->label1->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium Cond", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(57, 7);
-			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label1->Location = System::Drawing::Point(141, 9);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(267, 28);
 			this->label1->TabIndex = 0;
@@ -87,20 +94,19 @@ namespace ColorMania {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(11, 59);
-			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label3->Location = System::Drawing::Point(15, 73);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(210, 13);
+			this->label3->Size = System::Drawing::Size(263, 16);
 			this->label3->TabIndex = 4;
 			this->label3->Text = L"Ingrese el archivo de texto del mapa inicial:";
 			// 
 			// BIngresarArchivo
 			// 
 			this->BIngresarArchivo->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->BIngresarArchivo->Location = System::Drawing::Point(225, 54);
-			this->BIngresarArchivo->Margin = System::Windows::Forms::Padding(2);
+			this->BIngresarArchivo->Location = System::Drawing::Point(300, 66);
+			this->BIngresarArchivo->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->BIngresarArchivo->Name = L"BIngresarArchivo";
-			this->BIngresarArchivo->Size = System::Drawing::Size(114, 22);
+			this->BIngresarArchivo->Size = System::Drawing::Size(152, 27);
 			this->BIngresarArchivo->TabIndex = 5;
 			this->BIngresarArchivo->Text = L"Ingresar Archivo";
 			this->BIngresarArchivo->UseVisualStyleBackColor = true;
@@ -113,9 +119,10 @@ namespace ColorMania {
 			// BSalir
 			// 
 			this->BSalir->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->BSalir->Location = System::Drawing::Point(338, 230);
+			this->BSalir->Location = System::Drawing::Point(499, 382);
+			this->BSalir->Margin = System::Windows::Forms::Padding(4);
 			this->BSalir->Name = L"BSalir";
-			this->BSalir->Size = System::Drawing::Size(67, 24);
+			this->BSalir->Size = System::Drawing::Size(89, 30);
 			this->BSalir->TabIndex = 6;
 			this->BSalir->Text = L"Salir ";
 			this->BSalir->UseVisualStyleBackColor = true;
@@ -125,33 +132,46 @@ namespace ColorMania {
 			// 
 			this->BIniciarJuego->Enabled = false;
 			this->BIniciarJuego->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->BIniciarJuego->Location = System::Drawing::Point(237, 81);
+			this->BIniciarJuego->Location = System::Drawing::Point(316, 100);
+			this->BIniciarJuego->Margin = System::Windows::Forms::Padding(4);
 			this->BIniciarJuego->Name = L"BIniciarJuego";
-			this->BIniciarJuego->Size = System::Drawing::Size(87, 25);
+			this->BIniciarJuego->Size = System::Drawing::Size(116, 31);
 			this->BIniciarJuego->TabIndex = 7;
 			this->BIniciarJuego->Text = L"Inciar Juego";
 			this->BIniciarJuego->UseVisualStyleBackColor = true;
+			this->BIniciarJuego->Click += gcnew System::EventHandler(this, &MyForm::BIniciarJuego_Click);
+			// 
+			// dataGridView1
+			// 
+			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Location = System::Drawing::Point(60, 150);
+			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->RowTemplate->Height = 24;
+			this->dataGridView1->Size = System::Drawing::Size(438, 222);
+			this->dataGridView1->TabIndex = 8;
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(417, 267);
+			this->ClientSize = System::Drawing::Size(601, 425);
+			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->BIniciarJuego);
 			this->Controls->Add(this->BSalir);
 			this->Controls->Add(this->BIngresarArchivo);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label1);
-			this->Margin = System::Windows::Forms::Padding(2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MyForm";
 			this->Text = L"Color manía";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 		Pilas* PilaMapaInicial = new Pilas();
-
+		int ContPilas = 0, ContDatos = 0; 
 	private: System::Void BIngresarArchivo_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
 		array<String^>^ DatosTemporales;
@@ -166,23 +186,51 @@ namespace ColorMania {
 				int RecorrerDatosTemporales = 0;
 				while (DatosTemporales->Length != RecorrerDatosTemporales)
 				{
-					PilaMapaInicial->agregarDatosPila(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
-					RecorrerDatosTemporales++;
+					if (DatosTemporales[RecorrerDatosTemporales] == "X")
+					{
+						ContPilas++;
+						RecorrerDatosTemporales++;
+						if (ContPilas > 4)
+						{
+							MessageBox::Show("El archivo de texto contiene más de pilas maximas o minimas para el juego", "Error: Pilas max o min", MessageBoxButtons::OK, MessageBoxIcon::Error);
+							break;
+						}
+					}
+					else
+					{
+						RecorrerDatosTemporales++;
+					}
 				}
-				MessageBox::Show("El archivo de texto se ingreso correctamente", "Archivo de texto leído", MessageBoxButtons::OK);
-				this->BIniciarJuego->Enabled = true;
+				if (ContPilas < 4 && ContPilas > 0)
+				{
+					RecorrerDatosTemporales = 0;
+					while (DatosTemporales->Length != RecorrerDatosTemporales)
+					{
+						PilaMapaInicial->agregarDatosPila(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
+						RecorrerDatosTemporales++;
+					}
+					MessageBox::Show("El archivo de texto se ingreso correctamente", "Archivo de texto leído", MessageBoxButtons::OK);
+					this->BIniciarJuego->Enabled = true;
+				}
+				
 			}
 			else
 			{
 				MessageBox::Show("El archivo de texto se encuentra vacío", "Error: Archivo de texto vacío", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
 			inputStream->Close();
+			
 		}
 		
 	}
     private: System::Void BSalir_Click(System::Object^ sender, System::EventArgs^ e) 
     {
-		this->Close();
+		Application::Exit();
+    }
+    private: System::Void BIniciarJuego_Click(System::Object^ sender, System::EventArgs^ e)
+    {
+	     
+
     }
 };
 }
