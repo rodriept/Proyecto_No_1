@@ -171,7 +171,7 @@ namespace ColorMania {
 		}
 #pragma endregion
 		Pilas* PilaMapaInicial = new Pilas();
-		int ContPilas = 0, ContDatos = 0; 
+		int ContPilas = 0, ContDatos = 0, ContAgregarPilas = 0; 
 	private: System::Void BIngresarArchivo_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
 		array<String^>^ DatosTemporales;
@@ -204,9 +204,54 @@ namespace ColorMania {
 				if (ContPilas < 4 && ContPilas > 0)
 				{
 					RecorrerDatosTemporales = 0;
+					
 					while (DatosTemporales->Length != RecorrerDatosTemporales)
 					{
-						PilaMapaInicial->agregarDatosPila(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
+						switch (ContAgregarPilas)
+						{
+						case 0:
+							if (DatosTemporales[RecorrerDatosTemporales] == "X")
+							{
+								ContAgregarPilas++;
+							}
+							else
+							{
+								PilaMapaInicial->agregarDatosPila0(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
+							}
+							break;
+						case 1: 
+							if (DatosTemporales[RecorrerDatosTemporales] == "X")
+							{
+								ContAgregarPilas++;
+							}
+							else
+							{
+								PilaMapaInicial->agregarDatosPila1(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
+							}
+							break;
+						case 2: 
+							if (DatosTemporales[RecorrerDatosTemporales] == "X")
+							{
+								ContAgregarPilas++;
+							}
+							else
+							{
+								PilaMapaInicial->agregarDatosPila2(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
+							}
+							break;
+						case 3: 
+							if (DatosTemporales[RecorrerDatosTemporales] == "X")
+							{
+								ContAgregarPilas++;
+							}
+							else
+							{
+								PilaMapaInicial->agregarDatosPila3(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
+							}
+							break;
+						default:
+							break;
+						}
 						RecorrerDatosTemporales++;
 					}
 					MessageBox::Show("El archivo de texto se ingreso correctamente", "Archivo de texto leído", MessageBoxButtons::OK);
@@ -229,7 +274,7 @@ namespace ColorMania {
     }
     private: System::Void BIniciarJuego_Click(System::Object^ sender, System::EventArgs^ e)
     {
-	     
+		dataGridView1->ColumnCount = ContPilas;
 
     }
 };
