@@ -1,6 +1,6 @@
 #pragma once
 #include "Pilas.h"
-#include "Juego.h"
+#include "Colas.h"
 
 namespace ColorMania {
 
@@ -144,10 +144,12 @@ namespace ColorMania {
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(60, 150);
+			this->dataGridView1->ColumnHeadersVisible = false;
+			this->dataGridView1->Location = System::Drawing::Point(18, 138);
 			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->RowHeadersVisible = false;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(438, 222);
+			this->dataGridView1->Size = System::Drawing::Size(434, 217);
 			this->dataGridView1->TabIndex = 8;
 			// 
 			// MyForm
@@ -216,7 +218,7 @@ namespace ColorMania {
 							}
 							else
 							{
-								PilaMapaInicial->agregarDatosPila0(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
+								PilaMapaInicial->agregarDatosPila1(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
 							}
 							break;
 						case 1: 
@@ -226,7 +228,7 @@ namespace ColorMania {
 							}
 							else
 							{
-								PilaMapaInicial->agregarDatosPila1(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
+								PilaMapaInicial->agregarDatosPila2(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
 							}
 							break;
 						case 2: 
@@ -236,7 +238,7 @@ namespace ColorMania {
 							}
 							else
 							{
-								PilaMapaInicial->agregarDatosPila2(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
+								PilaMapaInicial->agregarDatosPila3(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
 							}
 							break;
 						case 3: 
@@ -246,7 +248,7 @@ namespace ColorMania {
 							}
 							else
 							{
-								PilaMapaInicial->agregarDatosPila3(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
+								PilaMapaInicial->agregarDatosPila4(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
 							}
 							break;
 						default:
@@ -274,8 +276,50 @@ namespace ColorMania {
     }
     private: System::Void BIniciarJuego_Click(System::Object^ sender, System::EventArgs^ e)
     {
-		dataGridView1->ColumnCount = ContPilas;
+		dataGridView1->ColumnCount = 3;
+		dataGridView1->Rows->Add(9);
+		System::Drawing::Color ColorRojo = Color::Red;
+		System::Drawing::Color ColorAmarillo = Color::Yellow;
+		System::Drawing::Color ColorVerde = Color::Green;
+		System::Drawing::Color ColorMorado = Color::Purple;
+		System::Drawing::Color ColorBlanco = Color::White;
+		
+		for (int i = 9; i > 0; i--)
+		{
+			for (int j = 0; j < 1; j++)
+			{
+				if (PilaMapaInicial->Pila1->Siguiente == nullptr)
+				{
+					dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorBlanco;
+					break;
+				}
+				else
+				{
+					switch (PilaMapaInicial->Pila1->elemento)
+					{
+					case 86: //Verde
+						dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorVerde;
 
+						break;
+					case 65: //Amarillo
+						dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorAmarillo;
+						break;
+					case 77: //Morado
+						dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorMorado;
+						break;
+					case 82:
+						dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorRojo;
+						break;
+
+					default:
+						break;
+					}
+					PilaMapaInicial->SacarElemento();
+				}
+				
+			}
+		}
+		
     }
 };
 }
