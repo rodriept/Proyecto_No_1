@@ -85,7 +85,8 @@ namespace ColorMania {
 			this->label1->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium Cond", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(141, 9);
+			this->label1->Location = System::Drawing::Point(106, 7);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(267, 28);
 			this->label1->TabIndex = 0;
@@ -94,19 +95,20 @@ namespace ColorMania {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(15, 73);
+			this->label3->Location = System::Drawing::Point(11, 59);
+			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(263, 16);
+			this->label3->Size = System::Drawing::Size(210, 13);
 			this->label3->TabIndex = 4;
 			this->label3->Text = L"Ingrese el archivo de texto del mapa inicial:";
 			// 
 			// BIngresarArchivo
 			// 
 			this->BIngresarArchivo->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->BIngresarArchivo->Location = System::Drawing::Point(300, 66);
-			this->BIngresarArchivo->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->BIngresarArchivo->Location = System::Drawing::Point(225, 54);
+			this->BIngresarArchivo->Margin = System::Windows::Forms::Padding(2);
 			this->BIngresarArchivo->Name = L"BIngresarArchivo";
-			this->BIngresarArchivo->Size = System::Drawing::Size(152, 27);
+			this->BIngresarArchivo->Size = System::Drawing::Size(114, 22);
 			this->BIngresarArchivo->TabIndex = 5;
 			this->BIngresarArchivo->Text = L"Ingresar Archivo";
 			this->BIngresarArchivo->UseVisualStyleBackColor = true;
@@ -119,10 +121,9 @@ namespace ColorMania {
 			// BSalir
 			// 
 			this->BSalir->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->BSalir->Location = System::Drawing::Point(499, 382);
-			this->BSalir->Margin = System::Windows::Forms::Padding(4);
+			this->BSalir->Location = System::Drawing::Point(374, 310);
 			this->BSalir->Name = L"BSalir";
-			this->BSalir->Size = System::Drawing::Size(89, 30);
+			this->BSalir->Size = System::Drawing::Size(67, 24);
 			this->BSalir->TabIndex = 6;
 			this->BSalir->Text = L"Salir ";
 			this->BSalir->UseVisualStyleBackColor = true;
@@ -132,10 +133,9 @@ namespace ColorMania {
 			// 
 			this->BIniciarJuego->Enabled = false;
 			this->BIniciarJuego->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->BIniciarJuego->Location = System::Drawing::Point(316, 100);
-			this->BIniciarJuego->Margin = System::Windows::Forms::Padding(4);
+			this->BIniciarJuego->Location = System::Drawing::Point(237, 81);
 			this->BIniciarJuego->Name = L"BIniciarJuego";
-			this->BIniciarJuego->Size = System::Drawing::Size(116, 31);
+			this->BIniciarJuego->Size = System::Drawing::Size(87, 25);
 			this->BIniciarJuego->TabIndex = 7;
 			this->BIniciarJuego->Text = L"Inciar Juego";
 			this->BIniciarJuego->UseVisualStyleBackColor = true;
@@ -145,27 +145,30 @@ namespace ColorMania {
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->ColumnHeadersVisible = false;
-			this->dataGridView1->Location = System::Drawing::Point(18, 138);
+			this->dataGridView1->EnableHeadersVisualStyles = false;
+			this->dataGridView1->Location = System::Drawing::Point(14, 112);
+			this->dataGridView1->Margin = System::Windows::Forms::Padding(2);
 			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->ReadOnly = true;
 			this->dataGridView1->RowHeadersVisible = false;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(434, 217);
+			this->dataGridView1->Size = System::Drawing::Size(344, 222);
 			this->dataGridView1->TabIndex = 8;
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(601, 425);
+			this->ClientSize = System::Drawing::Size(451, 345);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->BIniciarJuego);
 			this->Controls->Add(this->BSalir);
 			this->Controls->Add(this->BIngresarArchivo);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label1);
-			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"MyForm";
-			this->Text = L"Color manía";
+			this->Text = L"Color Man{ia";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -178,18 +181,18 @@ namespace ColorMania {
 	{
 		array<String^>^ DatosTemporales;
 		
-		if (System::Windows::Forms::DialogResult::OK == OFDAbrirArchivo->ShowDialog())
+		if (System::Windows::Forms::DialogResult::OK == OFDAbrirArchivo->ShowDialog()) //Validar si ingreso el .txt
 		{
-			StreamReader^ inputStream = gcnew StreamReader(OFDAbrirArchivo->FileName);
+			StreamReader^ inputStream = gcnew StreamReader(OFDAbrirArchivo->FileName); //Crear una variable para leer el .txt
 			if (inputStream != nullptr)
 			{
 				String^ LeerLinea = inputStream->ReadLine();
-				DatosTemporales = LeerLinea->Split(',');
+				DatosTemporales = LeerLinea->Split(','); //Pasamos a un array de string los datos del .txt
 				int RecorrerDatosTemporales = 0;
 				while (DatosTemporales->Length != RecorrerDatosTemporales)
 				{
-					if (DatosTemporales[RecorrerDatosTemporales] == "X")
-					{
+					if (DatosTemporales[RecorrerDatosTemporales] == "X") //Verificar que no haya puesto mas de 4 pilas
+					{                                                    
 						ContPilas++;
 						RecorrerDatosTemporales++;
 						if (ContPilas > 4)
@@ -203,6 +206,7 @@ namespace ColorMania {
 						RecorrerDatosTemporales++;
 					}
 				}
+				//Ingresar los datos a cada pila 
 				if (ContPilas < 4 && ContPilas > 0)
 				{
 					RecorrerDatosTemporales = 0;
@@ -276,49 +280,176 @@ namespace ColorMania {
     }
     private: System::Void BIniciarJuego_Click(System::Object^ sender, System::EventArgs^ e)
     {
-		dataGridView1->ColumnCount = 3;
+		dataGridView1->ColumnCount = ContPilas + 1;
 		dataGridView1->Rows->Add(9);
+		dataGridView1->AllowUserToResizeColumns = false; //El usuario no pueda Cambiar el tamaño a las columnas
+		dataGridView1->AllowUserToResizeRows = false; //El usuario no pueda cambiar el tamaño a las filas
+		dataGridView1->AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode::Fill; //Ajustarlo en el datagridview las pilas
+		//Variables para colorear las casillas del datagridview
 		System::Drawing::Color ColorRojo = Color::Red;
 		System::Drawing::Color ColorAmarillo = Color::Yellow;
 		System::Drawing::Color ColorVerde = Color::Green;
 		System::Drawing::Color ColorMorado = Color::Purple;
-		System::Drawing::Color ColorBlanco = Color::White;
-		
-		for (int i = 9; i > 0; i--)
+		while (ContPilas >= 0)
 		{
-			for (int j = 0; j < 1; j++)
+			if (ContPilas+1 == 4)
 			{
-				if (PilaMapaInicial->Pila1->Siguiente == nullptr)
+				for (int i = 9; i > 0; i--)
 				{
-					dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorBlanco;
-					break;
-				}
-				else
-				{
-					switch (PilaMapaInicial->Pila1->elemento)
+					for (int j = 3; j < 4; j++)
 					{
-					case 86: //Verde
-						dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorVerde;
+						if (PilaMapaInicial->Pila4->Siguiente == nullptr)
+						{
+							break;
+						}
+						else
+						{
+							switch (PilaMapaInicial->Pila4->elemento)
+							{
+							case 86: //Verde
+								dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorVerde;
 
-						break;
-					case 65: //Amarillo
-						dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorAmarillo;
-						break;
-					case 77: //Morado
-						dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorMorado;
-						break;
-					case 82:
-						dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorRojo;
-						break;
+								break;
+							case 65: //Amarillo
+								dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorAmarillo;
+								break;
+							case 77: //Morado
+								dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorMorado;
+								break;
+							case 82: //Rojo
+								dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorRojo;
+								break;
 
-					default:
-						break;
+							default:
+								break;
+							}
+							PilaMapaInicial->SacarElemento(4);
+						}
+
 					}
-					PilaMapaInicial->SacarElemento();
 				}
 				
 			}
+			else if (ContPilas + 1 == 3) 
+			{
+				for (int i = 9; i > 0; i--)
+				{
+					for (int j = 2; j < 3; j++)
+					{
+						if (PilaMapaInicial->Pila3->Siguiente == nullptr)
+						{
+							break;
+						}
+						else
+						{
+							switch (PilaMapaInicial->Pila3->elemento)
+							{
+							case 86: //Verde
+								dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorVerde;
+
+								break;
+							case 65: //Amarillo
+								dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorAmarillo;
+								break;
+							case 77: //Morado
+								dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorMorado;
+								break;
+							case 82: //Rojo
+								dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorRojo;
+								break;
+
+							default:
+								break;
+							}
+							PilaMapaInicial->SacarElemento(3);
+						}
+
+					}
+				}
+			}
+			else if (ContPilas + 1 == 2)
+			{
+				for (int i = 9; i > 0; i--)
+				{
+					for (int j = 1; j < 2; j++)
+					{
+						if (PilaMapaInicial->Pila2->Siguiente == nullptr)
+						{
+							break;
+						}
+						else
+						{
+							switch (PilaMapaInicial->Pila2->elemento)
+							{
+							case 86: //Verde
+								dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorVerde;
+
+								break;
+							case 65: //Amarillo
+								dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorAmarillo;
+								break;
+							case 77: //Morado
+								dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorMorado;
+								break;
+							case 82: //Rojo
+								dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorRojo;
+								break;
+
+							default:
+								break;
+							}
+							PilaMapaInicial->SacarElemento(2);
+						}
+
+					}
+				}
+
+			}
+			else if(ContPilas+1 == 1)
+			{
+			for (int i = 9; i > 0; i--)
+			{
+				for (int j = 0; j < 1; j++)
+				{
+
+					if (PilaMapaInicial->Pila1->Siguiente == nullptr)
+					{
+						break;
+					}
+					else
+					{
+						switch (PilaMapaInicial->Pila1->elemento)
+						{
+						case 86: //Verde
+							dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorVerde;
+
+							break;
+						case 65: //Amarillo
+							dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorAmarillo;
+							break;
+						case 77: //Morado
+							dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorMorado;
+							break;
+						case 82: //Rojo
+							dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorRojo;
+							break;
+
+						default:
+
+							break;
+						}
+						PilaMapaInicial->SacarElemento(1);
+
+					}
+
+				}
+			}
+            }
+			ContPilas--;
 		}
+		
+		
+		
 		
     }
 };

@@ -20,7 +20,7 @@ public:
 	void agregarDatosPila2(char _elemento);
 	void agregarDatosPila3(char _elemento);
 	void agregarDatosPila4(char _elemento);
-	char SacarElemento();
+	char SacarElemento(int NumPila);
 	
 	
 };

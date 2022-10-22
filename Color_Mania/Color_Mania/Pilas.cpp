@@ -29,11 +29,38 @@ void Pilas::agregarDatosPila4(char _elemento)
 	Pila4 = NuevaPila;
 }
 
-char Pilas::SacarElemento()
+char Pilas::SacarElemento(int NumPila)
 {
 	char Dato = ' ';
-	NodoPila* Aux = Pila1;
-	Dato = Aux->elemento;
-	Pila1 = Aux->Siguiente;
-	return Dato;
+	if (NumPila == 1)
+	{
+		NodoPila* Aux = Pila1;
+		Dato = Aux->elemento;
+		Pila1 = Aux->Siguiente;
+		return Dato;
+
+	}
+	else if (NumPila == 2)
+	{
+		NodoPila* Aux = Pila2;
+		Dato = Aux->elemento;
+		Pila2 = Aux->Siguiente;
+		return Dato;
+	}
+	else if(NumPila == 3)
+	{
+		NodoPila* Aux = Pila3;
+		Dato = Aux->elemento;
+		Pila3 = Aux->Siguiente;
+		return Dato;
+	}
+	else
+	{
+		NodoPila* Aux = Pila4;
+		Dato = Aux->elemento;
+		Pila4 = Aux->Siguiente;
+		
+		return Dato;
+	}
+	
 }
