@@ -5,18 +5,20 @@ class Colas
 	{
 	public:
 		char elemento;
-		NodoColas* Siguiente; 
-		NodoColas* frente;
-		NodoColas* fin;
+		NodoColas* Siguiente;
 	};
-private:
-	NodoColas Cola1();
-	NodoColas Cola2();
-	NodoColas Cola3();
-	NodoColas Cola4();
+public:
+	NodoColas* Cola1Frente;
+	NodoColas* Cola1Fin;
+	NodoColas* Cola2Frente;
+	NodoColas* Cola2Fin;
+	NodoColas* Cola3Frente;
+	NodoColas* Cola3Fin;
+	NodoColas* Cola4Frente;
+	NodoColas* Cola4Fin;
 public:
 	void AgregarCola(char _elemento, int Cola_A_Ingresar);
-	bool ColaVacia();
+	bool ColaVacia(NodoColas* _frente);
 
 };
 

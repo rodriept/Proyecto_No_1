@@ -51,6 +51,7 @@ namespace ColorMania {
 	private: System::Windows::Forms::Button^ BSalir;
 	private: System::Windows::Forms::Button^ BIniciarJuego;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::Button^ BBorrarMapa;
 
 
 
@@ -75,6 +76,7 @@ namespace ColorMania {
 			this->BSalir = (gcnew System::Windows::Forms::Button());
 			this->BIniciarJuego = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->BBorrarMapa = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -121,7 +123,7 @@ namespace ColorMania {
 			// BSalir
 			// 
 			this->BSalir->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->BSalir->Location = System::Drawing::Point(374, 310);
+			this->BSalir->Location = System::Drawing::Point(406, 365);
 			this->BSalir->Name = L"BSalir";
 			this->BSalir->Size = System::Drawing::Size(67, 24);
 			this->BSalir->TabIndex = 6;
@@ -154,12 +156,25 @@ namespace ColorMania {
 			this->dataGridView1->RowTemplate->Height = 24;
 			this->dataGridView1->Size = System::Drawing::Size(344, 222);
 			this->dataGridView1->TabIndex = 8;
+			this->dataGridView1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView1_CellClick);
+			// 
+			// BBorrarMapa
+			// 
+			this->BBorrarMapa->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->BBorrarMapa->Location = System::Drawing::Point(299, 365);
+			this->BBorrarMapa->Name = L"BBorrarMapa";
+			this->BBorrarMapa->Size = System::Drawing::Size(101, 24);
+			this->BBorrarMapa->TabIndex = 9;
+			this->BBorrarMapa->Text = L"Borrar Mapa";
+			this->BBorrarMapa->UseVisualStyleBackColor = true;
+			this->BBorrarMapa->Click += gcnew System::EventHandler(this, &MyForm::BBorrarMapa_Click);
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(451, 345);
+			this->ClientSize = System::Drawing::Size(485, 401);
+			this->Controls->Add(this->BBorrarMapa);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->BIniciarJuego);
 			this->Controls->Add(this->BSalir);
@@ -176,11 +191,13 @@ namespace ColorMania {
 		}
 #pragma endregion
 		Pilas* PilaMapaInicial = new Pilas();
-		int ContPilas = 0, ContDatos = 0, ContAgregarPilas = 0; 
+		int ContPilas = 0;
+		int Clicks = 0, FilaDGV = 0, ColumnaDGV = 0;
+		int pilaMax1 = 0, pilaMax2 = 0, pilaMax3 = 0, pilaMax4 = 0, pilaMax;
 	private: System::Void BIngresarArchivo_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
 		array<String^>^ DatosTemporales;
-		
+		int ContAgregarPilas = 0;
 		if (System::Windows::Forms::DialogResult::OK == OFDAbrirArchivo->ShowDialog()) //Validar si ingreso el .txt
 		{
 			StreamReader^ inputStream = gcnew StreamReader(OFDAbrirArchivo->FileName); //Crear una variable para leer el .txt
@@ -223,6 +240,7 @@ namespace ColorMania {
 							else
 							{
 								PilaMapaInicial->agregarDatosPila1(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
+								pilaMax1++;
 							}
 							break;
 						case 1: 
@@ -233,6 +251,7 @@ namespace ColorMania {
 							else
 							{
 								PilaMapaInicial->agregarDatosPila2(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
+								pilaMax2++;
 							}
 							break;
 						case 2: 
@@ -243,6 +262,7 @@ namespace ColorMania {
 							else
 							{
 								PilaMapaInicial->agregarDatosPila3(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
+								pilaMax3++;
 							}
 							break;
 						case 3: 
@@ -253,6 +273,7 @@ namespace ColorMania {
 							else
 							{
 								PilaMapaInicial->agregarDatosPila4(Convert::ToChar(DatosTemporales[RecorrerDatosTemporales]));
+								pilaMax4++;
 							}
 							break;
 						default:
@@ -281,7 +302,26 @@ namespace ColorMania {
     private: System::Void BIniciarJuego_Click(System::Object^ sender, System::EventArgs^ e)
     {
 		dataGridView1->ColumnCount = ContPilas + 1;
-		dataGridView1->Rows->Add(9);
+		if (pilaMax1>pilaMax2 && pilaMax1>pilaMax3 && pilaMax1>pilaMax4)
+		{
+			pilaMax = pilaMax1;
+			dataGridView1->Rows->Add(pilaMax1);
+		}
+		else if (pilaMax2 > pilaMax1 && pilaMax2 > pilaMax3 && pilaMax2 > pilaMax4)
+		{
+			pilaMax = pilaMax2;
+			dataGridView1->Rows->Add(pilaMax2);
+		}
+		else if (pilaMax3 > pilaMax1 && pilaMax3 > pilaMax2 && pilaMax3 > pilaMax4)
+		{
+			pilaMax = pilaMax3;
+			dataGridView1->Rows->Add(pilaMax3);
+		}
+		else
+		{
+			pilaMax = pilaMax4;
+			dataGridView1->Rows->Add(pilaMax4);
+		}
 		dataGridView1->AllowUserToResizeColumns = false; //El usuario no pueda Cambiar el tamaño a las columnas
 		dataGridView1->AllowUserToResizeRows = false; //El usuario no pueda cambiar el tamaño a las filas
 		dataGridView1->AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode::Fill; //Ajustarlo en el datagridview las pilas
@@ -290,16 +330,18 @@ namespace ColorMania {
 		System::Drawing::Color ColorAmarillo = Color::Yellow;
 		System::Drawing::Color ColorVerde = Color::Green;
 		System::Drawing::Color ColorMorado = Color::Purple;
+		System::Drawing::Color ColorBlanco = Color::White;
 		while (ContPilas >= 0)
 		{
 			if (ContPilas+1 == 4)
 			{
-				for (int i = 9; i > 0; i--)
+				for (int i = pilaMax; i > 0; i--)
 				{
 					for (int j = 3; j < 4; j++)
 					{
 						if (PilaMapaInicial->Pila4->Siguiente == nullptr)
 						{
+							dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorBlanco;
 							break;
 						}
 						else
@@ -332,12 +374,13 @@ namespace ColorMania {
 			}
 			else if (ContPilas + 1 == 3) 
 			{
-				for (int i = 9; i > 0; i--)
+				for (int i = pilaMax; i > 0; i--)
 				{
 					for (int j = 2; j < 3; j++)
 					{
 						if (PilaMapaInicial->Pila3->Siguiente == nullptr)
 						{
+							dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorBlanco;
 							break;
 						}
 						else
@@ -369,12 +412,13 @@ namespace ColorMania {
 			}
 			else if (ContPilas + 1 == 2)
 			{
-				for (int i = 9; i > 0; i--)
+				for (int i = pilaMax; i > 0; i--)
 				{
 					for (int j = 1; j < 2; j++)
 					{
 						if (PilaMapaInicial->Pila2->Siguiente == nullptr)
 						{
+							dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorBlanco;
 							break;
 						}
 						else
@@ -407,13 +451,14 @@ namespace ColorMania {
 			}
 			else if(ContPilas+1 == 1)
 			{
-			for (int i = 9; i > 0; i--)
+			for (int i = pilaMax; i > 0; i--)
 			{
 				for (int j = 0; j < 1; j++)
 				{
 
 					if (PilaMapaInicial->Pila1->Siguiente == nullptr)
 					{
+						dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorBlanco;
 						break;
 					}
 					else
@@ -447,10 +492,70 @@ namespace ColorMania {
             }
 			ContPilas--;
 		}
+		pilaMax = 0;
+		pilaMax1 = 0;
+		pilaMax2 = 0;
+		pilaMax3 = 0;
+		pilaMax4 = 0;
+		ContPilas = 0;
+		BIniciarJuego->Enabled = false;
+    }
+    private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
+    {
+		
+		if (Clicks == 0)
+		{
+			if (dataGridView1->Rows[e->RowIndex - 1]->Cells[e->ColumnIndex]->Style->BackColor != Color::White)
+			{
+				MessageBox::Show("Casilla no permitida porque tiene una arriba de el", "Error: Casilla no permitida", MessageBoxButtons::OK, MessageBoxIcon::Error);
+
+			}
+			else
+			{
+				MessageBox::Show("Presione donde quiere ingresar el color", "Ingrese la casilla", MessageBoxButtons::OK);
+				FilaDGV = e->RowIndex;
+				ColumnaDGV = e->ColumnIndex;
+				
+				Clicks++;
+			}
+		}
+		else if (Clicks == 1)
+		{
+
+			if (dataGridView1->Rows[e->RowIndex]->Cells[e->ColumnIndex]->Style->BackColor != Color::White)
+			{
+				MessageBox::Show("Lugar ya ocupado por un color, Ingrese el color en otra casilla", "Error: Ingrese el color en otra casilla", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+			else
+			{
+				if (dataGridView1->Rows[e->RowIndex + 1]->Cells[e->ColumnIndex]->Style->BackColor != Color::White)
+				{
+					MessageBox::Show("No se puede ingresar en esa casilla, porque no posee un color abajo", "Error: Lugar incorrecto", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					Clicks--;
+				}
+				else
+				{
+					dataGridView1->Rows[e->RowIndex]->Cells[e->ColumnIndex]->Style->BackColor = dataGridView1->Rows[FilaDGV]->Cells[ColumnaDGV]->Style->BackColor;
+					dataGridView1->Rows[FilaDGV]->Cells[ColumnaDGV]->Style->BackColor = Color::White;
+					Clicks--;
+				}
+				
+			}
+		}
 		
 		
-		
+			
+			
+			
 		
     }
+   
+private: System::Void BBorrarMapa_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	
+	dataGridView1->Columns->Clear();
+	dataGridView1->Rows->Clear();
+	
+}
 };
 }
