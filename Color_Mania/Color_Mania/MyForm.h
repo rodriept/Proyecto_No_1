@@ -1,6 +1,7 @@
 #pragma once
 #include "Pilas.h"
 #include "Colas.h"
+#include "MovRealizados.h"
 
 namespace ColorMania {
 
@@ -57,6 +58,8 @@ namespace ColorMania {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ LMovimientosRes;
+	private: System::Windows::Forms::Button^ BIrAMovRealizados;
+
 
 
 
@@ -87,6 +90,7 @@ namespace ColorMania {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->LMovimientosRes = (gcnew System::Windows::Forms::Label());
+			this->BIrAMovRealizados = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -98,10 +102,9 @@ namespace ColorMania {
 			this->label1->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium Cond", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(106, 7);
-			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label1->Location = System::Drawing::Point(141, 9);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(267, 28);
+			this->label1->Size = System::Drawing::Size(335, 36);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"¡BIENVENIDOS A COLOR MANÍA!";
 			// 
@@ -110,10 +113,9 @@ namespace ColorMania {
 			this->label3->AutoSize = true;
 			this->label3->BackColor = System::Drawing::SystemColors::HighlightText;
 			this->label3->ForeColor = System::Drawing::SystemColors::Desktop;
-			this->label3->Location = System::Drawing::Point(11, 59);
-			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label3->Location = System::Drawing::Point(15, 73);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(210, 13);
+			this->label3->Size = System::Drawing::Size(263, 16);
 			this->label3->TabIndex = 4;
 			this->label3->Text = L"Ingrese el archivo de texto del mapa inicial:";
 			// 
@@ -122,10 +124,10 @@ namespace ColorMania {
 			this->BIngresarArchivo->BackColor = System::Drawing::SystemColors::MenuBar;
 			this->BIngresarArchivo->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->BIngresarArchivo->ForeColor = System::Drawing::SystemColors::Desktop;
-			this->BIngresarArchivo->Location = System::Drawing::Point(225, 54);
-			this->BIngresarArchivo->Margin = System::Windows::Forms::Padding(2);
+			this->BIngresarArchivo->Location = System::Drawing::Point(300, 66);
+			this->BIngresarArchivo->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->BIngresarArchivo->Name = L"BIngresarArchivo";
-			this->BIngresarArchivo->Size = System::Drawing::Size(114, 22);
+			this->BIngresarArchivo->Size = System::Drawing::Size(152, 27);
 			this->BIngresarArchivo->TabIndex = 5;
 			this->BIngresarArchivo->Text = L"Ingresar Archivo";
 			this->BIngresarArchivo->UseVisualStyleBackColor = false;
@@ -139,9 +141,10 @@ namespace ColorMania {
 			// 
 			this->BSalir->BackColor = System::Drawing::SystemColors::MenuBar;
 			this->BSalir->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->BSalir->Location = System::Drawing::Point(406, 365);
+			this->BSalir->Location = System::Drawing::Point(541, 449);
+			this->BSalir->Margin = System::Windows::Forms::Padding(4);
 			this->BSalir->Name = L"BSalir";
-			this->BSalir->Size = System::Drawing::Size(67, 24);
+			this->BSalir->Size = System::Drawing::Size(89, 30);
 			this->BSalir->TabIndex = 6;
 			this->BSalir->Text = L"Salir ";
 			this->BSalir->UseVisualStyleBackColor = false;
@@ -152,9 +155,10 @@ namespace ColorMania {
 			this->BIniciarJuego->BackColor = System::Drawing::SystemColors::MenuBar;
 			this->BIniciarJuego->Enabled = false;
 			this->BIniciarJuego->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->BIniciarJuego->Location = System::Drawing::Point(237, 81);
+			this->BIniciarJuego->Location = System::Drawing::Point(316, 100);
+			this->BIniciarJuego->Margin = System::Windows::Forms::Padding(4);
 			this->BIniciarJuego->Name = L"BIniciarJuego";
-			this->BIniciarJuego->Size = System::Drawing::Size(87, 25);
+			this->BIniciarJuego->Size = System::Drawing::Size(116, 31);
 			this->BIniciarJuego->TabIndex = 7;
 			this->BIniciarJuego->Text = L"Inciar Juego";
 			this->BIniciarJuego->UseVisualStyleBackColor = false;
@@ -165,13 +169,14 @@ namespace ColorMania {
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->ColumnHeadersVisible = false;
 			this->dataGridView1->EnableHeadersVisualStyles = false;
-			this->dataGridView1->Location = System::Drawing::Point(14, 112);
-			this->dataGridView1->Margin = System::Windows::Forms::Padding(2);
+			this->dataGridView1->Location = System::Drawing::Point(19, 138);
+			this->dataGridView1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
 			this->dataGridView1->RowHeadersVisible = false;
+			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(344, 222);
+			this->dataGridView1->Size = System::Drawing::Size(459, 273);
 			this->dataGridView1->TabIndex = 8;
 			this->dataGridView1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView1_CellClick);
 			// 
@@ -179,9 +184,10 @@ namespace ColorMania {
 			// 
 			this->BBorrarMapa->BackColor = System::Drawing::SystemColors::MenuBar;
 			this->BBorrarMapa->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->BBorrarMapa->Location = System::Drawing::Point(299, 365);
+			this->BBorrarMapa->Location = System::Drawing::Point(399, 449);
+			this->BBorrarMapa->Margin = System::Windows::Forms::Padding(4);
 			this->BBorrarMapa->Name = L"BBorrarMapa";
-			this->BBorrarMapa->Size = System::Drawing::Size(101, 24);
+			this->BBorrarMapa->Size = System::Drawing::Size(135, 30);
 			this->BBorrarMapa->TabIndex = 9;
 			this->BBorrarMapa->Text = L"Borrar Mapa";
 			this->BBorrarMapa->UseVisualStyleBackColor = false;
@@ -191,9 +197,10 @@ namespace ColorMania {
 			// 
 			this->CBElegirModo->FormattingEnabled = true;
 			this->CBElegirModo->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Fácil", L"Medio", L"Difícil" });
-			this->CBElegirModo->Location = System::Drawing::Point(356, 85);
+			this->CBElegirModo->Location = System::Drawing::Point(475, 105);
+			this->CBElegirModo->Margin = System::Windows::Forms::Padding(4);
 			this->CBElegirModo->Name = L"CBElegirModo";
-			this->CBElegirModo->Size = System::Drawing::Size(112, 21);
+			this->CBElegirModo->Size = System::Drawing::Size(148, 24);
 			this->CBElegirModo->TabIndex = 10;
 			// 
 			// label2
@@ -201,9 +208,10 @@ namespace ColorMania {
 			this->label2->AutoSize = true;
 			this->label2->BackColor = System::Drawing::SystemColors::Window;
 			this->label2->ForeColor = System::Drawing::SystemColors::Desktop;
-			this->label2->Location = System::Drawing::Point(353, 69);
+			this->label2->Location = System::Drawing::Point(471, 85);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(110, 13);
+			this->label2->Size = System::Drawing::Size(139, 16);
 			this->label2->TabIndex = 11;
 			this->label2->Text = L"Elegir Modo de juego:";
 			// 
@@ -212,9 +220,10 @@ namespace ColorMania {
 			this->label4->AutoSize = true;
 			this->label4->BackColor = System::Drawing::SystemColors::Window;
 			this->label4->ForeColor = System::Drawing::SystemColors::Desktop;
-			this->label4->Location = System::Drawing::Point(363, 138);
+			this->label4->Location = System::Drawing::Point(484, 170);
+			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(69, 13);
+			this->label4->Size = System::Drawing::Size(86, 16);
 			this->label4->TabIndex = 12;
 			this->label4->Text = L"Movimientos:";
 			// 
@@ -223,18 +232,30 @@ namespace ColorMania {
 			this->LMovimientosRes->AutoSize = true;
 			this->LMovimientosRes->BackColor = System::Drawing::SystemColors::Window;
 			this->LMovimientosRes->ForeColor = System::Drawing::SystemColors::Desktop;
-			this->LMovimientosRes->Location = System::Drawing::Point(432, 138);
+			this->LMovimientosRes->Location = System::Drawing::Point(576, 170);
+			this->LMovimientosRes->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->LMovimientosRes->Name = L"LMovimientosRes";
-			this->LMovimientosRes->Size = System::Drawing::Size(0, 13);
+			this->LMovimientosRes->Size = System::Drawing::Size(0, 16);
 			this->LMovimientosRes->TabIndex = 13;
+			// 
+			// BIrAMovRealizados
+			// 
+			this->BIrAMovRealizados->Location = System::Drawing::Point(161, 449);
+			this->BIrAMovRealizados->Name = L"BIrAMovRealizados";
+			this->BIrAMovRealizados->Size = System::Drawing::Size(231, 30);
+			this->BIrAMovRealizados->TabIndex = 14;
+			this->BIrAMovRealizados->Text = L"Ver Movimientos realizados";
+			this->BIrAMovRealizados->UseVisualStyleBackColor = true;
+			this->BIrAMovRealizados->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
-			this->ClientSize = System::Drawing::Size(499, 401);
+			this->ClientSize = System::Drawing::Size(665, 494);
+			this->Controls->Add(this->BIrAMovRealizados);
 			this->Controls->Add(this->LMovimientosRes);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label2);
@@ -246,7 +267,7 @@ namespace ColorMania {
 			this->Controls->Add(this->BIngresarArchivo);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label1);
-			this->Margin = System::Windows::Forms::Padding(2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MyForm";
 			this->Text = L"Color Man{ia";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
@@ -255,11 +276,14 @@ namespace ColorMania {
 
 		}
 #pragma endregion
+		//Variables globales
 		Pilas* PilaMapaInicial = new Pilas();
 		int ContPilas = 0;
-		int Clicks = 0, FilaDGV = 0, ColumnaDGV = 0;
+		int Clicks, FilaDGV, ColumnaDGV, ColumnaClick2;
 		int pilaMax1 = 0, pilaMax2 = 0, pilaMax3 = 0, pilaMax4 = 0, pilaMax;
 		int Movimientos, opcionModo;
+		MovRealizados^ MandarMov = gcnew MovRealizados;
+		String^ MovimientoRealizado;
 	private: System::Void BIngresarArchivo_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
 		array<String^>^ DatosTemporales;
@@ -587,6 +611,8 @@ namespace ColorMania {
     }
     private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
     {
+		
+		
 		if (Movimientos == 0)
 		{
 			MessageBox::Show("Ya no tienes mas movimientos terminó el juego", "Juego terminado", MessageBoxButtons::OK);
@@ -606,6 +632,22 @@ namespace ColorMania {
 					FilaDGV = e->RowIndex;
 					ColumnaDGV = e->ColumnIndex;
 					Clicks++;
+					if (ColumnaDGV == 0)
+					{
+						MovimientoRealizado = "P1-->";
+					}
+					else if (ColumnaDGV == 1)
+					{
+						MovimientoRealizado = "P2-->";
+					}
+					else if(ColumnaDGV == 2)
+					{
+						MovimientoRealizado = "P3-->";
+					}
+					else
+					{
+						MovimientoRealizado = "P4-->";
+					}
 				}
 			}
 			else if (Clicks == 1)
@@ -620,13 +662,37 @@ namespace ColorMania {
 
 					dataGridView1->Rows[e->RowIndex]->Cells[e->ColumnIndex]->Style->BackColor = dataGridView1->Rows[FilaDGV]->Cells[ColumnaDGV]->Style->BackColor;
 					dataGridView1->Rows[FilaDGV]->Cells[ColumnaDGV]->Style->BackColor = Color::White;
-
+					ColumnaClick2 = e->ColumnIndex;
 					if (opcionModo != 0)
 					{
 						Movimientos--;
 						LMovimientosRes->Text = Convert::ToString(Movimientos);
 					}
 					Clicks--;
+					if (ColumnaClick2 == 0)
+					{
+						MovimientoRealizado += "P1";
+						MandarMov->LBMostrarMov->Items->Add(MovimientoRealizado);
+						MovimientoRealizado = "";
+					}
+					else if (ColumnaClick2 == 1)
+					{
+						MovimientoRealizado += "P2";
+						MandarMov->LBMostrarMov->Items->Add(MovimientoRealizado);
+						MovimientoRealizado = "";
+					}
+					else if (ColumnaClick2 == 2)
+					{
+						MovimientoRealizado += "P3";
+						MandarMov->LBMostrarMov->Items->Add(MovimientoRealizado);
+						MovimientoRealizado = "";
+					}
+					else
+					{
+						MovimientoRealizado += "P4";
+						MandarMov->LBMostrarMov->Items->Add(MovimientoRealizado);
+						MovimientoRealizado = "";
+					}
 
 
 				}
@@ -636,12 +702,17 @@ namespace ColorMania {
 		
     }
    
-private: System::Void BBorrarMapa_Click(System::Object^ sender, System::EventArgs^ e) 
-{
+    private: System::Void BBorrarMapa_Click(System::Object^ sender, System::EventArgs^ e) 
+    {
 	
-	dataGridView1->Columns->Clear();
-	dataGridView1->Rows->Clear();
+	  dataGridView1->Columns->Clear();
+	   dataGridView1->Rows->Clear();
 	
-}
+    }
+    private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		MandarMov->ShowDialog();
+		this->Hide();
+    }
 };
 }

@@ -136,6 +136,9 @@
     <ClInclude Include="Pilas.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MovRealizados.resx">
+      <DependentUpon>MovRealizados.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
     </EmbeddedResource>
