@@ -1,7 +1,9 @@
-﻿  MyForm.cpp
+﻿  MovRealizados.cpp
+  MyForm.cpp
 C:\Users\Yaxkem Lol\Desktop\Proyecto_No_1\Color_Mania\Color_Mania\MyForm.h(391,59): warning C4244: 'argumento': conversión de 'wchar_t' a 'char'; posible pérdida de datos
 C:\Users\Yaxkem Lol\Desktop\Proyecto_No_1\Color_Mania\Color_Mania\MyForm.h(402,59): warning C4244: 'argumento': conversión de 'wchar_t' a 'char'; posible pérdida de datos
 C:\Users\Yaxkem Lol\Desktop\Proyecto_No_1\Color_Mania\Color_Mania\MyForm.h(413,59): warning C4244: 'argumento': conversión de 'wchar_t' a 'char'; posible pérdida de datos
 C:\Users\Yaxkem Lol\Desktop\Proyecto_No_1\Color_Mania\Color_Mania\MyForm.h(424,59): warning C4244: 'argumento': conversión de 'wchar_t' a 'char'; posible pérdida de datos
+  Generando código...
   Colas.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
   Color_Mania.vcxproj -> C:\Users\Yaxkem Lol\Desktop\Proyecto_No_1\Color_Mania\x64\Debug\Color_Mania.exe

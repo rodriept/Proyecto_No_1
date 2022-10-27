@@ -22,6 +22,7 @@ namespace ColorMania {
 		static int minuto = 0;
 		String^ Seg;
 	private: System::Windows::Forms::Button^ BCambiarCola;
+	private: System::Windows::Forms::Button^ BGuardar;
 		   String^ Min;
 	
 	public:
@@ -105,6 +106,7 @@ namespace ColorMania {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->LTiempo = (gcnew System::Windows::Forms::Label());
 			this->BCambiarCola = (gcnew System::Windows::Forms::Button());
+			this->BGuardar = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -303,6 +305,17 @@ namespace ColorMania {
 			this->BCambiarCola->Text = L"Cambiar a cola";
 			this->BCambiarCola->UseVisualStyleBackColor = false;
 			// 
+			// BGuardar
+			// 
+			this->BGuardar->BackColor = System::Drawing::SystemColors::Control;
+			this->BGuardar->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->BGuardar->Location = System::Drawing::Point(548, 334);
+			this->BGuardar->Name = L"BGuardar";
+			this->BGuardar->Size = System::Drawing::Size(144, 31);
+			this->BGuardar->TabIndex = 18;
+			this->BGuardar->Text = L"Guardar Partida";
+			this->BGuardar->UseVisualStyleBackColor = false;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
@@ -311,6 +324,7 @@ namespace ColorMania {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(748, 618);
+			this->Controls->Add(this->BGuardar);
 			this->Controls->Add(this->BCambiarCola);
 			this->Controls->Add(this->LTiempo);
 			this->Controls->Add(this->label5);
@@ -773,7 +787,7 @@ namespace ColorMania {
     private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
 		MandarMov->ShowDialog();
-		this->Hide();
+		
     }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }
@@ -806,10 +820,6 @@ private: System::Void dataGridView1_CellContentClick(System::Object^ sender, Sys
 				Timer1->Enabled = false;
 				MessageBox::Show("El tiempo ha acabado, Termino el juego", "Tiempo terminado", MessageBoxButtons::OK);
 				dataGridView1->Enabled = false;
-			}
-			if (true)
-			{
-
 			}
 			break;
 		default:
