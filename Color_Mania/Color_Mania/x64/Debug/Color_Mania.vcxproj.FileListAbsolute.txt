@@ -1,0 +1,4 @@
+C:\Users\Yaxkem Lol\Desktop\Proyecto_No_1\Color_Mania\Color_Mania\x64\Debug\Color_Mania.vcxproj.AssemblyReference.cache
+C:\Users\Yaxkem Lol\Desktop\Proyecto_No_1\Color_Mania\Color_Mania\x64\Debug\ColorMania.MovRealizados.resources
+C:\Users\Yaxkem Lol\Desktop\Proyecto_No_1\Color_Mania\Color_Mania\x64\Debug\ColorMania.MyForm.resources
+C:\Users\Yaxkem Lol\Desktop\Proyecto_No_1\Color_Mania\Color_Mania\x64\Debug\Color_Mania.vcxproj.GenerateResource.cache
