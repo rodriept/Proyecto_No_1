@@ -23,6 +23,7 @@ namespace ColorMania {
 		String^ Seg;
 	private: System::Windows::Forms::Button^ BCambiarCola;
 	private: System::Windows::Forms::Button^ BGuardar;
+	private: System::Windows::Forms::SaveFileDialog^ SFDGuardarPartida;
 		   String^ Min;
 	
 	public:
@@ -107,6 +108,7 @@ namespace ColorMania {
 			this->LTiempo = (gcnew System::Windows::Forms::Label());
 			this->BCambiarCola = (gcnew System::Windows::Forms::Button());
 			this->BGuardar = (gcnew System::Windows::Forms::Button());
+			this->SFDGuardarPartida = (gcnew System::Windows::Forms::SaveFileDialog());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -200,13 +202,14 @@ namespace ColorMania {
 			// BBorrarMapa
 			// 
 			this->BBorrarMapa->BackColor = System::Drawing::SystemColors::MenuBar;
+			this->BBorrarMapa->Enabled = false;
 			this->BBorrarMapa->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->BBorrarMapa->Location = System::Drawing::Point(449, 561);
 			this->BBorrarMapa->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->BBorrarMapa->Name = L"BBorrarMapa";
 			this->BBorrarMapa->Size = System::Drawing::Size(152, 38);
 			this->BBorrarMapa->TabIndex = 9;
-			this->BBorrarMapa->Text = L"Borrar Mapa";
+			this->BBorrarMapa->Text = L"Terminar Juego";
 			this->BBorrarMapa->UseVisualStyleBackColor = false;
 			this->BBorrarMapa->Click += gcnew System::EventHandler(this, &MyForm::BBorrarMapa_Click);
 			// 
@@ -297,6 +300,7 @@ namespace ColorMania {
 			// BCambiarCola
 			// 
 			this->BCambiarCola->BackColor = System::Drawing::SystemColors::Control;
+			this->BCambiarCola->Enabled = false;
 			this->BCambiarCola->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->BCambiarCola->Location = System::Drawing::Point(548, 296);
 			this->BCambiarCola->Name = L"BCambiarCola";
@@ -308,6 +312,7 @@ namespace ColorMania {
 			// BGuardar
 			// 
 			this->BGuardar->BackColor = System::Drawing::SystemColors::Control;
+			this->BGuardar->Enabled = false;
 			this->BGuardar->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->BGuardar->Location = System::Drawing::Point(548, 334);
 			this->BGuardar->Name = L"BGuardar";
@@ -315,6 +320,7 @@ namespace ColorMania {
 			this->BGuardar->TabIndex = 18;
 			this->BGuardar->Text = L"Guardar Partida";
 			this->BGuardar->UseVisualStyleBackColor = false;
+			this->BGuardar->Click += gcnew System::EventHandler(this, &MyForm::BGuardar_Click);
 			// 
 			// MyForm
 			// 
@@ -357,6 +363,7 @@ namespace ColorMania {
 		int Movimientos, opcionModo;
 		MovRealizados^ MandarMov = gcnew MovRealizados;
 		String^ MovimientoRealizado;
+		String^ DatosAGuardar = "";
 	private: System::Void BIngresarArchivo_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
 		array<String^>^ DatosTemporales;
@@ -676,6 +683,8 @@ namespace ColorMania {
 			break;
 		}
 		Timer1->Enabled = true;
+		BGuardar->Enabled = true;
+		BCambiarCola->Enabled = true;
 		pilaMax = 0;
 		pilaMax1 = 0;
 		pilaMax2 = 0;
@@ -779,9 +788,10 @@ namespace ColorMania {
    
     private: System::Void BBorrarMapa_Click(System::Object^ sender, System::EventArgs^ e) 
     {
-	
-	  dataGridView1->Columns->Clear();
+   	   
+	   dataGridView1->Columns->Clear();
 	   dataGridView1->Rows->Clear();
+
 	
     }
     private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) 
@@ -825,6 +835,85 @@ private: System::Void dataGridView1_CellContentClick(System::Object^ sender, Sys
 		default:
 			break;
 		}
+    }
+    private: System::Void BGuardar_Click(System::Object^ sender, System::EventArgs^ e)
+    {
+		//Para guardar los datos del datagridview
+		for (int i = 0; i < dataGridView1->ColumnCount; i++)
+		{
+			for (int j = 0; j < dataGridView1->RowCount; j++)
+			{
+				if (dataGridView1->Rows[j]->Cells[i]->Style->BackColor != Color::White)
+				{
+					if (dataGridView1->Rows[j]->Cells[i]->Style->BackColor == Color::Yellow)
+					{
+						if (DatosAGuardar == "")
+						{
+							DatosAGuardar = "A";
+						}
+						else
+						{
+							DatosAGuardar += ",A";
+						}
+					}
+					if (dataGridView1->Rows[j]->Cells[i]->Style->BackColor == Color::Purple)
+					{
+						if (DatosAGuardar == "")
+						{
+							DatosAGuardar = "M";
+						}
+						else
+						{
+							DatosAGuardar += ",M";
+						}
+					}
+					if (dataGridView1->Rows[j]->Cells[i]->Style->BackColor == Color::Green)
+					{
+						if (DatosAGuardar == "")
+						{
+							DatosAGuardar = "V";
+						}
+						else
+						{
+							DatosAGuardar += ",V";
+						}
+					}
+					if (dataGridView1->Rows[j]->Cells[i]->Style->BackColor == Color::Red)
+					{
+						if (DatosAGuardar == "")
+						{
+							DatosAGuardar = "R";
+						}
+						else
+						{
+							DatosAGuardar += ",R";
+						}
+					}
+				}
+			}
+			DatosAGuardar += ",X";
+		}
+		if (SFDGuardarPartida->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+		{
+			//Si el archivo existe
+			if (File::Exists(SFDGuardarPartida->FileName))
+			{
+				String^ Direccion = SFDGuardarPartida->FileName;
+				StreamWriter^ PartidaAGuardar = File::CreateText(Direccion);
+				PartidaAGuardar->Write(DatosAGuardar);
+				PartidaAGuardar->Flush();
+				PartidaAGuardar->Close();
+			}
+			else //Si el archivo no existe 
+			{
+				String^ Direccion = SFDGuardarPartida->FileName;
+				StreamWriter^ PartidaAGuardar = File::CreateText(Direccion);
+				PartidaAGuardar->Write(DatosAGuardar);
+				PartidaAGuardar->Flush();
+				PartidaAGuardar->Close();
+			}
+		}
+
     }
 };
 }
