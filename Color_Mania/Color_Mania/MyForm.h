@@ -59,7 +59,8 @@ namespace ColorMania {
 	private: System::Windows::Forms::Button^ BSalir;
 	private: System::Windows::Forms::Button^ BIniciarJuego;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-	private: System::Windows::Forms::Button^ BBorrarMapa;
+	private: System::Windows::Forms::Button^ BTerminarJuego;
+
 	private: System::Windows::Forms::ComboBox^ CBElegirModo;
 
 	private: System::Windows::Forms::Label^ label2;
@@ -97,7 +98,7 @@ namespace ColorMania {
 			this->BSalir = (gcnew System::Windows::Forms::Button());
 			this->BIniciarJuego = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->BBorrarMapa = (gcnew System::Windows::Forms::Button());
+			this->BTerminarJuego = (gcnew System::Windows::Forms::Button());
 			this->CBElegirModo = (gcnew System::Windows::Forms::ComboBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
@@ -199,19 +200,19 @@ namespace ColorMania {
 			this->dataGridView1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView1_CellClick);
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView1_CellContentClick);
 			// 
-			// BBorrarMapa
+			// BTerminarJuego
 			// 
-			this->BBorrarMapa->BackColor = System::Drawing::SystemColors::MenuBar;
-			this->BBorrarMapa->Enabled = false;
-			this->BBorrarMapa->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->BBorrarMapa->Location = System::Drawing::Point(449, 561);
-			this->BBorrarMapa->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->BBorrarMapa->Name = L"BBorrarMapa";
-			this->BBorrarMapa->Size = System::Drawing::Size(152, 38);
-			this->BBorrarMapa->TabIndex = 9;
-			this->BBorrarMapa->Text = L"Terminar Juego";
-			this->BBorrarMapa->UseVisualStyleBackColor = false;
-			this->BBorrarMapa->Click += gcnew System::EventHandler(this, &MyForm::BBorrarMapa_Click);
+			this->BTerminarJuego->BackColor = System::Drawing::SystemColors::MenuBar;
+			this->BTerminarJuego->Enabled = false;
+			this->BTerminarJuego->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->BTerminarJuego->Location = System::Drawing::Point(449, 561);
+			this->BTerminarJuego->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->BTerminarJuego->Name = L"BTerminarJuego";
+			this->BTerminarJuego->Size = System::Drawing::Size(152, 38);
+			this->BTerminarJuego->TabIndex = 9;
+			this->BTerminarJuego->Text = L"Terminar Juego";
+			this->BTerminarJuego->UseVisualStyleBackColor = false;
+			this->BTerminarJuego->Click += gcnew System::EventHandler(this, &MyForm::BBorrarMapa_Click);
 			// 
 			// CBElegirModo
 			// 
@@ -339,7 +340,7 @@ namespace ColorMania {
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->CBElegirModo);
-			this->Controls->Add(this->BBorrarMapa);
+			this->Controls->Add(this->BTerminarJuego);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->BIniciarJuego);
 			this->Controls->Add(this->BSalir);
@@ -525,7 +526,7 @@ namespace ColorMania {
 								break;
 							case 65: //Amarillo
 								dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorAmarillo;
-								break;
+								break; 
 							case 77: //Morado
 								dataGridView1->Rows[i]->Cells[j]->Style->BackColor = ColorMorado;
 								break;
@@ -685,6 +686,8 @@ namespace ColorMania {
 		Timer1->Enabled = true;
 		BGuardar->Enabled = true;
 		BCambiarCola->Enabled = true;
+		BIngresarArchivo->Enabled = false;
+		BTerminarJuego->Enabled = true;
 		pilaMax = 0;
 		pilaMax1 = 0;
 		pilaMax2 = 0;
@@ -696,7 +699,7 @@ namespace ColorMania {
     private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
     {
 		
-		
+		//Validar si la posicion en la que hizo click el usuario se puede hacer un movimiento
 		if (Movimientos == 0)
 		{
 			MessageBox::Show("Ya no tienes mas movimientos terminó el juego", "Juego terminado", MessageBoxButtons::OK);
@@ -787,10 +790,16 @@ namespace ColorMania {
     }
    
     private: System::Void BBorrarMapa_Click(System::Object^ sender, System::EventArgs^ e) 
-    {
-   	   
+    { 
+		//Boton para Terminar el juego
+	   MessageBox::Show("la partida ha sido terminada", "Juego Terminado",MessageBoxButtons::OK);
 	   dataGridView1->Columns->Clear();
 	   dataGridView1->Rows->Clear();
+	   Timer1->Enabled = false;
+	   BIniciarJuego->Enabled = true;
+	   BGuardar->Enabled = false;
+	   BTerminarJuego->Enabled = false;
+
 
 	
     }
@@ -803,6 +812,7 @@ private: System::Void dataGridView1_CellContentClick(System::Object^ sender, Sys
 }
     private: System::Void Timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
     {
+		//Para llevar el tiempo que lleva el juego y cuanto tiempo le hace falta al jugador para que termine
 		int opcion = CBElegirModo->SelectedIndex;
 		Segundo++;
 		if (Segundo == 60)
